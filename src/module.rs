@@ -172,6 +172,7 @@ impl<'ctx> Module<'ctx> {
         }
     }
 
+    /// gets underlying llvm module ref
     pub fn get_module_ref(&self) -> LLVMModuleRef {
         self.module.get()
     }
