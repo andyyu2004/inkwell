@@ -27,10 +27,10 @@ pub use crate::types::fn_type::FunctionType;
 pub use crate::types::int_type::{IntType, StringRadix};
 pub use crate::types::ptr_type::PointerType;
 pub use crate::types::struct_type::StructType;
-pub use crate::types::traits::AsTypeRef;
 pub use crate::types::traits::{AnyType, BasicType, FloatMathType, IntMathType, PointerMathType};
 pub use crate::types::vec_type::VectorType;
 pub use crate::types::void_type::VoidType;
+pub use traits::AsTypeRef;
 
 #[llvm_versions(3.7..=4.0)]
 use llvm_sys::core::LLVMDumpType;
