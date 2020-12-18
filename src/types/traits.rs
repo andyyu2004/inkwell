@@ -26,12 +26,16 @@ macro_rules! trait_type_set {
     );
 }
 
-// REVIEW: print_to_string might be a good candidate to live here?
 /// Represents any LLVM type.
 pub trait AnyType<'ctx>: AsTypeRef + Debug {
     /// Returns an `AnyTypeEnum` that represents the current type.
     fn as_any_type_enum(&self) -> AnyTypeEnum<'ctx> {
         AnyTypeEnum::new(self.as_type_ref())
+    }
+
+    /// Prints the definition of a Type to a `LLVMString`.
+    fn print_to_string(&self) -> LLVMString {
+        Type::new(self.as_type_ref()).print_to_string()
     }
 }
 
@@ -111,6 +115,7 @@ pub trait BasicType<'ctx>: AnyType<'ctx> {
     /// let int_basic_type = int.as_basic_type_enum();
     /// assert_eq!(int_basic_type.array_type(32), int.array_type(32));
     /// ```
+    // FIXME: This likely doesn't belong on the trait, since not all basic types can be turned into arrays?
     fn array_type(&self, size: u32) -> ArrayType<'ctx> {
         Type::new(self.as_type_ref()).array_type(size)
     }
